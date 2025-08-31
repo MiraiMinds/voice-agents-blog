@@ -27,6 +27,29 @@ p:has(img) {
 
 p img {
   max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0.5rem 0;
+}
+
+/* Ensure images don't stretch beyond their natural size */
+article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for image captions (italic text after images) */
+p:has(img) + p em {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  color: #c7c7c7;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .toc-card {

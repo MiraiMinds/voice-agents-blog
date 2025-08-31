@@ -23,7 +23,7 @@ const {
 
 // https://astro.build/config
 const config = defineConfig({
-  site: 'https://spectre.lou.gg',
+  site: 'https://blog.miraiminds.co',
   output: 'static',
   integrations: [
     expressiveCode({
@@ -32,30 +32,16 @@ const config = defineConfig({
     mdx(),
     sitemap(),
     spectre({
-      name: 'Spectre',
+      name: 'Engineering Tales- Voice Agent',
       openGraph: {
         home: {
-          title: 'Spectre',
-          description: 'A minimalistic theme for Astro.'
+          title: 'Engineering Tales - Voice Agent',
+          description: 'All tales of building a voice agent.'
         },
         blog: {
           title: 'Blog',
-          description: 'News and guides for Spectre.'
+          description: 'Tales of Voice agent building.'
         },
-        projects: {
-          title: 'Projects'
-        }
-      },
-      giscus: {
-        repository: GISCUS_REPO,
-        repositoryId: GISCUS_REPO_ID,
-        category: GISCUS_CATEGORY,
-        categoryId: GISCUS_CATEGORY_ID,
-        mapping: GISCUS_MAPPING as any,
-        strict: GISCUS_STRICT === "true",
-        reactionsEnabled: GISCUS_REACTIONS_ENABLED === "true",
-        emitMetadata: GISCUS_EMIT_METADATA === "true",
-        lang: GISCUS_LANG,
       }
     })
   ],

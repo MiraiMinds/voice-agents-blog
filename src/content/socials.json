@@ -3,9 +3,18 @@
     "id": 1,
     "icon": {
       "type": "lucide",
-      "name": "github"
+      "name": "message-circle"
     },
-    "text": "GitHub",
-    "link": "https://github.com/louisescher/spectre"
+    "text": "Discord",
+    "link": "https://discord.gg/T2pMwq5RVg"
+  },
+  {
+    "id": 2,
+    "icon": {
+      "type": "lucide",
+      "name": "book"
+    },
+    "text": "Read the Docs",
+    "link": "https://docs.miraiminds.co/"
   }
 ]
