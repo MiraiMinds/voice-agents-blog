@@ -23,6 +23,9 @@
     "astro-expressive-code": "^0.38.3",
     "sharp": "^0.33.5"
   },
+  "engines": {
+    "node": ">=18.20.8"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/node": "^24.3.0",
