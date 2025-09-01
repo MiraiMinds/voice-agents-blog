@@ -23,7 +23,6 @@ const {
 
 // https://astro.build/config
 const config = defineConfig({
-  site: 'https://blog.miraiminds.co',
   output: 'static',
   integrations: [
     expressiveCode({
