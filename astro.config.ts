@@ -1,17 +1,17 @@
 import { loadEnv } from "vite";
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import expressiveCode from 'astro-expressive-code';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
-import spectre from './package/src';
+import expressiveCode from "astro-expressive-code";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import spectre from "./package/src";
 
-import { spectreDark } from './src/ec-theme';
-
+import { spectreDark } from "./src/ec-theme";
 
 // https://astro.build/config
 const config = defineConfig({
-  output: 'static',
+  site: "https://blog.miraiminds.co",
+  output: "static",
   integrations: [
     expressiveCode({
       themes: [spectreDark],
@@ -19,18 +19,18 @@ const config = defineConfig({
     mdx(),
     sitemap(),
     spectre({
-      name: 'Engineering Tales- Voice Agent',
+      name: "Engineering Tales- Voice Agent",
       openGraph: {
         home: {
-          title: 'Engineering Tales - Voice Agent',
-          description: 'All tales of building a voice agent.'
+          title: "Engineering Tales - Voice Agent",
+          description: "All tales of building a voice agent.",
         },
         blog: {
-          title: 'Blog',
-          description: 'Tales of Voice agent building.'
+          title: "Blog",
+          description: "Tales of Voice agent building.",
         },
-      }
-    })
+      },
+    }),
   ],
 });
 
