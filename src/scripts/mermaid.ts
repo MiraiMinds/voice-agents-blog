@@ -1,18 +1,35 @@
-import mermaid from "mermaid";
+const MERMAID_CDN =
+  "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
-const codeBlocks = document.querySelectorAll<HTMLElement>(
-  "pre > code.language-mermaid, pre > code.lang-mermaid"
-);
+async function renderMermaid() {
+  const { default: mermaid } = await import(MERMAID_CDN);
+  const codeBlocks = document.querySelectorAll<HTMLElement>(
+    'pre[data-language="mermaid"], pre > code.language-mermaid, pre > code.lang-mermaid'
+  );
 
-codeBlocks.forEach((code) => {
-  const pre = code.parentElement;
-  if (!pre) return;
+  codeBlocks.forEach((target) => {
+    const pre = target.matches("pre") ? target : target.parentElement;
+    if (!pre) return;
 
-  const container = document.createElement("div");
-  container.className = "mermaid";
-  container.textContent = code.textContent ?? "";
-  pre.replaceWith(container);
+    const wrapper = pre.closest(".expressive-code") ?? pre;
+    const copyButton = wrapper.querySelector<HTMLButtonElement>(
+      "button[data-code]"
+    );
+    const raw =
+      copyButton?.dataset.code?.replace(/\u007f/g, "\n") ??
+      pre.textContent ??
+      "";
+
+    const container = document.createElement("div");
+    container.className = "mermaid";
+    container.textContent = raw.trim();
+    wrapper.replaceWith(container);
+  });
+
+  mermaid.initialize({ startOnLoad: true, securityLevel: "strict" });
+  mermaid.run();
+}
+
+renderMermaid().catch((error) => {
+  console.warn("Mermaid render failed:", error);
 });
-
-mermaid.initialize({ startOnLoad: true, securityLevel: "strict" });
-mermaid.run();
