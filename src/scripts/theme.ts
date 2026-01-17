@@ -1,6 +1,6 @@
 type Theme = "dark" | "light";
 
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = "blog-theme";
 
 function isTheme(value: string | null): value is Theme {
   return value === "dark" || value === "light";
@@ -8,17 +8,19 @@ function isTheme(value: string | null): value is Theme {
 
 function getStoredTheme(): Theme | null {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = sessionStorage.getItem(STORAGE_KEY);
     return isTheme(stored) ? stored : null;
   } catch {
     return null;
   }
 }
 
-function getSystemTheme(): Theme {
-  return window.matchMedia("(prefers-color-scheme: light)").matches
-    ? "light"
-    : "dark";
+function isBlogPath(pathname: string): boolean {
+  return pathname === "/blog" || pathname.startsWith("/blog/");
+}
+
+function getDefaultTheme(): Theme {
+  return "light";
 }
 
 function applyTheme(theme: Theme) {
@@ -32,7 +34,7 @@ function setTheme(theme: Theme, persist: boolean) {
   if (!persist) return;
 
   try {
-    localStorage.setItem(STORAGE_KEY, theme);
+    sessionStorage.setItem(STORAGE_KEY, theme);
   } catch {
     // Ignore storage failures
   }
@@ -42,7 +44,7 @@ function toggleTheme() {
   const current =
     (document.documentElement.dataset.theme as Theme | undefined) ??
     getStoredTheme() ??
-    getSystemTheme();
+    getDefaultTheme();
   setTheme(current === "dark" ? "light" : "dark", true);
 }
 
@@ -50,7 +52,7 @@ function syncToggleButton(button: HTMLButtonElement) {
   const theme =
     (document.documentElement.dataset.theme as Theme | undefined) ??
     getStoredTheme() ??
-    getSystemTheme();
+    getDefaultTheme();
   const nextTheme: Theme = theme === "dark" ? "light" : "dark";
 
   button.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
@@ -58,8 +60,15 @@ function syncToggleButton(button: HTMLButtonElement) {
 }
 
 function init() {
+  if (!isBlogPath(window.location.pathname)) {
+    document.documentElement.dataset.theme = "dark";
+    return;
+  }
+
   const button = document.querySelector<HTMLButtonElement>("#theme-toggle");
   if (!button) return;
+
+  applyTheme(getStoredTheme() ?? getDefaultTheme());
 
   button.addEventListener("click", () => {
     toggleTheme();
@@ -67,20 +76,6 @@ function init() {
   });
 
   syncToggleButton(button);
-
-  const media = window.matchMedia("(prefers-color-scheme: light)");
-  media.addEventListener("change", () => {
-    if (getStoredTheme() !== null) return;
-    applyTheme(getSystemTheme());
-    syncToggleButton(button);
-  });
-
-  window.addEventListener("storage", (event) => {
-    if (event.key !== STORAGE_KEY) return;
-    const stored = isTheme(event.newValue) ? event.newValue : null;
-    applyTheme(stored ?? getSystemTheme());
-    syncToggleButton(button);
-  });
 }
 
 if (document.readyState === "loading") {

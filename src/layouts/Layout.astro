@@ -37,12 +37,18 @@ const isBlogPage = Astro.url.pathname === '/blog' || Astro.url.pathname.startsWi
 		<script is:inline>
 			(() => {
 				try {
-					const stored = localStorage.getItem('theme');
-					const system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-					const theme = stored === 'light' || stored === 'dark' ? stored : system;
+					const path = window.location.pathname;
+					const isBlog = path === '/blog' || path.startsWith('/blog/');
+					let theme = 'dark';
+
+					if (isBlog) {
+						const stored = sessionStorage.getItem('blog-theme');
+						theme = stored === 'light' || stored === 'dark' ? stored : 'light';
+					}
+
 					document.documentElement.dataset.theme = theme;
 				} catch {
-					// Ignore storage access errors
+					document.documentElement.dataset.theme = 'dark';
 				}
 			})();
 		</script>
@@ -89,7 +95,7 @@ const isBlogPage = Astro.url.pathname === '/blog' || Astro.url.pathname.startsWi
 			<slot name="404" />
 		</main>
 		<Background />
-		<script src="../scripts/theme.ts" />
-		<script src="../scripts/mermaid.ts" />
+		{isBlogPage && <script src="../scripts/theme.ts" />}
+		{isBlogPage && <script src="../scripts/mermaid.ts" />}
 	</body>
 </html>
