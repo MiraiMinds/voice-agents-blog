@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Abstract hero illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0b0f" />
+      <stop offset="55%" stop-color="#1a1233" />
+      <stop offset="100%" stop-color="#2b1558" />
+    </linearGradient>
+    <radialGradient id="glow" cx="25%" cy="15%" r="45%">
+      <stop offset="0%" stop-color="#8f6bff" stop-opacity="0.55" />
+      <stop offset="60%" stop-color="#8f6bff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#8f6bff" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#ffffff" fill-opacity="0.08" />
+    </pattern>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101018" />
+      <stop offset="100%" stop-color="#1b1b2b" />
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a287ff" />
+      <stop offset="100%" stop-color="#6b52ff" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect width="1600" height="900" fill="url(#glow)" />
+  <rect width="1600" height="900" fill="url(#dots)" />
+
+  <g opacity="0.9">
+    <rect x="260" y="190" width="1080" height="520" rx="26" fill="url(#panel)" stroke="url(#stroke)" stroke-width="2" />
+    <rect x="320" y="250" width="220" height="80" rx="16" fill="#1e1e2f" stroke="#44356f" stroke-width="1.5" />
+    <rect x="690" y="250" width="220" height="80" rx="16" fill="#1e1e2f" stroke="#44356f" stroke-width="1.5" />
+    <rect x="1060" y="250" width="220" height="80" rx="16" fill="#1e1e2f" stroke="#44356f" stroke-width="1.5" />
+
+    <circle cx="430" cy="290" r="18" fill="#8f6bff" />
+    <circle cx="800" cy="290" r="18" fill="#6ec6ff" />
+    <circle cx="1170" cy="290" r="18" fill="#ff7cc8" />
+
+    <path d="M448 290 H672" stroke="#7a6dd6" stroke-width="3" stroke-linecap="round" />
+    <path d="M818 290 H1042" stroke="#7a6dd6" stroke-width="3" stroke-linecap="round" />
+
+    <rect x="420" y="410" width="760" height="220" rx="20" fill="#141423" stroke="#3b2c66" stroke-width="1.5" />
+    <circle cx="520" cy="520" r="42" fill="#1f1f35" stroke="#4c3f7a" stroke-width="2" />
+    <circle cx="1080" cy="520" r="42" fill="#1f1f35" stroke="#4c3f7a" stroke-width="2" />
+    <path d="M562 520 H1038" stroke="#6c5bd6" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 14" />
+  </g>
+
+  <g opacity="0.6">
+    <circle cx="1240" cy="160" r="120" fill="none" stroke="#8f6bff" stroke-width="3" />
+    <circle cx="1240" cy="160" r="12" fill="#8f6bff" />
+    <circle cx="1185" cy="145" r="8" fill="#8f6bff" />
+    <circle cx="1295" cy="175" r="8" fill="#8f6bff" />
+  </g>
+</svg>
