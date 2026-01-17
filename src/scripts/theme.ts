@@ -39,7 +39,8 @@ function setTheme(theme: Theme, persist: boolean) {
 }
 
 function toggleTheme() {
-  const current = (document.documentElement.dataset.theme as Theme | undefined) ??
+  const current =
+    (document.documentElement.dataset.theme as Theme | undefined) ??
     getStoredTheme() ??
     getSystemTheme();
   setTheme(current === "dark" ? "light" : "dark", true);
@@ -87,4 +88,3 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-

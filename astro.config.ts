@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import spectre from "./package/src";
 
-import { spectreDark } from "./src/ec-theme";
+import { spectreDark, spectreLight } from "./src/ec-theme";
 
 // https://astro.build/config
 const config = defineConfig({
@@ -14,7 +14,9 @@ const config = defineConfig({
   output: "static",
   integrations: [
     expressiveCode({
-      themes: [spectreDark],
+      themes: [spectreDark, spectreLight],
+      useDarkModeMediaQuery: false,
+      themeCssSelector: (theme) => `:root[data-theme="${theme.type}"]`,
     }),
     mdx(),
     sitemap(),

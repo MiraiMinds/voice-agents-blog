@@ -1,4 +1,5 @@
 import githubDark from '@shikijs/themes/github-dark';
+import githubLight from '@shikijs/themes/github-light';
 import type { ThemeRegistration } from 'shiki';
 
 const spectreDark: ThemeRegistration = {
@@ -17,4 +18,9 @@ const spectreDark: ThemeRegistration = {
   }
 };
 
-export { spectreDark };
+const spectreLight: ThemeRegistration = {
+  ...githubLight,
+  name: 'Spectre Light',
+};
+
+export { spectreDark, spectreLight };

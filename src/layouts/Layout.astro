@@ -19,6 +19,7 @@ interface Props {
 }
 
 const { title, description, image, pagefindIgnore, article } = Astro.props;
+const isBlogPage = Astro.url.pathname === '/blog' || Astro.url.pathname.startsWith('/blog/');
 ---
 
 <!DOCTYPE html>
@@ -78,7 +79,7 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 		{description && <meta name="twitter:description" content={description} />}
 		<meta name="twitter:image" content={image?.src || '/img/og.png'} />
 	</head>
-	<body>
+	<body data-section={isBlogPage ? 'blog' : 'site'}>
 		<main data-pagefind-ignore={pagefindIgnore}>
 			<Navbar />
 			<LayoutGrid>
