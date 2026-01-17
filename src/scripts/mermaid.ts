@@ -1,11 +1,11 @@
-const MERMAID_CDN =
-  "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
 async function renderMermaid() {
-  const { default: mermaid } = await import(MERMAID_CDN);
   const codeBlocks = document.querySelectorAll<HTMLElement>(
     'pre[data-language="mermaid"], pre > code.language-mermaid, pre > code.lang-mermaid'
   );
+
+  if (codeBlocks.length === 0) return;
+
+  const { default: mermaid } = await import("mermaid");
 
   codeBlocks.forEach((target) => {
     const pre = target.matches("pre") ? target : target.parentElement;
@@ -26,7 +26,7 @@ async function renderMermaid() {
     wrapper.replaceWith(container);
   });
 
-  mermaid.initialize({ startOnLoad: true, securityLevel: "strict" });
+  mermaid.initialize({ startOnLoad: false, securityLevel: "strict" });
   mermaid.run();
 }
 

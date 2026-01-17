@@ -6,7 +6,6 @@ import Background from '../components/Background.astro';
 import Navbar from '../components/Navbar.astro';
 import LayoutGrid from '../components/LayoutGrid.astro';
 import { name, themeColor, twitterHandle } from 'spectre:globals';
-import mermaidScript from '../scripts/mermaid.ts?url';
 
 interface Props {
 	title: string;
@@ -76,6 +75,6 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 			<slot name="404" />
 		</main>
 		<Background />
-		<script type="module" src={mermaidScript}></script>
+		<script src="../scripts/mermaid.ts" />
 	</body>
 </html>
