@@ -5,6 +5,15 @@
   /* Used for links */
   --primary-light: #a277ff;
   --primary-lightest: #c2a8fd;
+
+  --color-link: var(--primary-light);
+  --color-link-hover: var(--primary-lightest);
+}
+
+:root[data-theme="light"] {
+  /* Darker link colors for good contrast on light backgrounds */
+  --primary-light: #5b2be6;
+  --primary-lightest: #4a1cd2;
 }
 
 .overview-list {
@@ -26,13 +35,13 @@
 }
 
 a {
-  color: var(--primary-light);
+  color: var(--color-link);
   text-decoration: none;
   transition: color .15s ease;
 }
 
 a:hover {
-  color: var(--primary-lightest);
+  color: var(--color-link-hover);
   text-decoration: underline;
 }
 
@@ -94,8 +103,8 @@ main {
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #353535;
-  color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   text-decoration: none;
   transition: background-color .15s ease, border .15s ease;
 }
@@ -103,7 +112,7 @@ main {
 .post-container:hover, .post-container:focus-visible {
   background-color: rgba(var(--primary-rgb), .125);
   border: 1px solid var(--primary);
-  color: white;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -122,7 +131,7 @@ main {
 }
 
 .post-date {
-  color: #c7c7c7;
+  color: var(--color-muted);
 }
 
 .text-glow {
@@ -131,12 +140,12 @@ main {
 }
 
 .block-link {
-  color: white;
+  color: var(--color-text);
   padding: .25rem .5rem;
 }
 
 .block-link:hover, .block-link:focus-visible {
-  color: white;
+  color: var(--color-on-primary);
   background-color: var(--primary);
   text-decoration: none;
   outline: none;

@@ -33,6 +33,19 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
+		<script is:inline>
+			(() => {
+				try {
+					const stored = localStorage.getItem('theme');
+					const system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+					const theme = stored === 'light' || stored === 'dark' ? stored : system;
+					document.documentElement.dataset.theme = theme;
+				} catch {
+					// Ignore storage access errors
+				}
+			})();
+		</script>
+
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
 		<meta name="theme-color" content={themeColor}>
@@ -75,6 +88,7 @@ const { title, description, image, pagefindIgnore, article } = Astro.props;
 			<slot name="404" />
 		</main>
 		<Background />
+		<script src="../scripts/theme.ts" />
 		<script src="../scripts/mermaid.ts" />
 	</body>
 </html>

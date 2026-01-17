@@ -10,6 +10,16 @@ const path = Astro.url.pathname;
     <li>
       <a href="/blog" class:list={{ active: path.startsWith('/blog') }}>Blog</a>
     </li>
+    <li>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+        <span class="theme-icon theme-icon-sun">
+          <Icon type="lucide" name="sun" width={20} height={20} />
+        </span>
+        <span class="theme-icon theme-icon-moon">
+          <Icon type="lucide" name="moon" width={20} height={20} />
+        </span>
+      </button>
+    </li>
       <!-- <li class="nav-separator">/</li> -->
     <li>
       <input id="search" type="text" placeholder="Search (Ctrl+K)" />
@@ -189,6 +199,7 @@ const path = Astro.url.pathname;
 
   nav a:hover, nav a:focus-visible, nav a.active {
     background-color: var(--primary);
+    color: var(--color-on-primary);
     outline: none;
   }
 
@@ -201,18 +212,19 @@ const path = Astro.url.pathname;
   }
 
   #search::placeholder {
-    color: white;
+    color: var(--color-muted);
   }
 
   #search:focus {
     background-color: var(--primary);
+    color: var(--color-on-primary);
   }
 
   #search-results {
     position: absolute;
     top: calc(100% + .5rem);
     right: 0;
-    background-color: #252525;
+    background-color: var(--color-surface-3);
     border: 1px solid var(--primary);
     display: none;
     width: 200%;
@@ -224,12 +236,46 @@ const path = Astro.url.pathname;
     display: block;
   }
 
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover, .theme-toggle:focus-visible {
+    border-color: var(--primary);
+    outline: none;
+  }
+
+  .theme-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-icon-moon {
+    display: none;
+  }
+
+  :root[data-theme="light"] .theme-icon-sun {
+    display: none;
+  }
+
+  :root[data-theme="light"] .theme-icon-moon {
+    display: flex;
+  }
+
   .mobile-nav-toggle {
     display: none;
     width: 40px;
     height: 40px;
-    background-color: #121212;
-    border: 1px solid #353535;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -281,20 +327,20 @@ const path = Astro.url.pathname;
     }
 
     nav.active {
-      background-color: #181818;
+      background-color: var(--color-surface-2);
     }
 
     nav.active ul {
       opacity: 1;
       pointer-events: all;
-      background-color: #181818;
+      background-color: var(--color-surface-2);
     }
 
     nav ul li {
       position: relative;
       transition: all .25s ease-out;
       top: -1.5rem;
-      border-bottom: 1px solid #353535;
+      border-bottom: 1px solid var(--color-border);
       width: 100%;
       max-width: none;
       padding: 0;
@@ -309,7 +355,7 @@ const path = Astro.url.pathname;
     }
 
     nav ul li:first-child {
-      border-top: 1px solid #353535;
+      border-top: 1px solid var(--color-border);
     }
 
     nav.active ul li {
@@ -333,14 +379,15 @@ const path = Astro.url.pathname;
   #search-results a {
     display: block;
     text-decoration: none;
-    color: white !important;
+    color: var(--color-text) !important;
     padding: .5rem;
   }
 
-  #search-results a:hover, #search-results a:focus-visible {
-    background-color: var(--primary);
-    outline: none;
-  }
+	  #search-results a:hover, #search-results a:focus-visible {
+	    background-color: var(--primary);
+	    color: var(--color-on-primary) !important;
+	    outline: none;
+	  }
 
   #search-results a:hover mark, #search-results a:focus-visible mark {
     background-color: #ffffff;
@@ -358,15 +405,15 @@ const path = Astro.url.pathname;
     overflow: hidden;
   }
 
-  #search-results mark {
-    background-color: var(--primary);
-    color: white;
-  }
+	  #search-results mark {
+	    background-color: var(--primary);
+	    color: var(--color-on-primary);
+	  }
 
   .separator {
     margin: .5rem .5rem;
     border: none;
     height: 1px;
-    background-color: #353535;
+    background-color: var(--color-border);
   }
 </style>

@@ -37,14 +37,14 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid #353535;
-  color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   text-decoration: none;
   transition: background-color .15s ease, border .15s ease;
 }
 
 .post-container:hover, .post-container:focus-visible {
-  background-color: rgba(140, 92, 245, .125);
+  background-color: rgba(var(--primary-rgb), .125);
   border: 1px solid var(--primary);
 }
 
@@ -53,7 +53,7 @@
 }
 
 .post-date, .work-experience-duration {
-  color: #c7c7c7;
+  color: var(--color-muted);
 }
 
 .work-experience-container {
@@ -63,7 +63,7 @@
 }
 
 .work-experience-entry:not(:last-of-type) {
-  border-bottom: 1px solid #353535;
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 1rem;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .socials-link {
-  color: white;
+  color: var(--color-text);
   display: flex;
   flex-direction: row;
   gap: .75rem;

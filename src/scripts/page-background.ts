@@ -29,7 +29,10 @@ class PageBackground {
   private letterPositions: LetterPosition[] = [];
   private letterInstances: LetterInstance[] = [];
 
-  private primaryRgb: string;
+  private primaryRgb: string = "";
+  private bgLetterRgb: string = "255, 255, 255";
+  private bgLetterAlpha: number = 0.01;
+  private bgBaseOpacity: string = "1";
 
   /**
    * Initializes the background on the page.
@@ -57,18 +60,33 @@ class PageBackground {
     overlayCanvas.width = this.width;
     overlayCanvas.height = this.height;
 
-    // Set the primary color to the first color in the theme
-    this.primaryRgb = window.getComputedStyle(document.documentElement).getPropertyValue('--primary-rgb').trim();
-
+    this.syncThemeVariables();
     this.initBackground();
   
     requestAnimationFrame(this.redrawBackground);
   }
 
+  private syncThemeVariables = () => {
+    const styles = window.getComputedStyle(document.documentElement);
+
+    this.primaryRgb = styles.getPropertyValue('--primary-rgb').trim();
+    this.bgLetterRgb =
+      styles.getPropertyValue('--bg-letter-rgb').trim() || "255, 255, 255";
+
+    const alpha = Number.parseFloat(
+      styles.getPropertyValue('--bg-letter-alpha').trim()
+    );
+    this.bgLetterAlpha = Number.isFinite(alpha) ? alpha : 0.01;
+
+    this.bgBaseOpacity =
+      styles.getPropertyValue('--bg-base-opacity').trim() || "1";
+  };
+
   /**
    * Sets up the background canvases. The text is decided based on the title of the page.
    */
   private initBackground = () => {
+    this.syncThemeVariables();
     let text: string = document.title.toLowerCase().split(' | ')[0].replace(/\s/g, '_') || 'spectre';
 
     // Add additional underscore to separate words
@@ -84,7 +102,7 @@ class PageBackground {
     this.baseCtx.font = '28px Geist Mono';
     this.baseCtx.textAlign = 'start';
     this.baseCtx.textBaseline = 'top';
-    this.baseCtx.fillStyle = 'rgba(255, 255, 255, 0.01)';
+    this.baseCtx.fillStyle = `rgba(${this.bgLetterRgb}, ${this.bgLetterAlpha})`;
       
     for(let i = 0; i < lines; i++) {
       for(let j = 0; j < letters; j++) {
@@ -127,7 +145,7 @@ class PageBackground {
     }
   
     // Make the base canvas visible
-    this.baseCanvas.style.opacity = '1';
+    this.baseCanvas.style.opacity = this.bgBaseOpacity;
   }
 
   /**
@@ -267,6 +285,10 @@ async function initializeBackground() {
   const background = new PageBackground(canvas, overlayCanvas);
 
   window.addEventListener('resize', () => {
+    background.resizeBackground();
+  });
+
+  window.addEventListener('themechange', () => {
     background.resizeBackground();
   });
 }

@@ -13,6 +13,6 @@
 }
 
 #overlay-canvas {
-  opacity: 1;
+  opacity: var(--bg-overlay-opacity);
   z-index: -1 !important;
 }

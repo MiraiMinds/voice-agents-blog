@@ -14,7 +14,7 @@ article {
 article hr {
   height: 1px;
   border: none;
-  background-color: #353535;
+  background-color: var(--color-border);
 }
 
 p:has(img) {
@@ -46,7 +46,7 @@ p:has(img) + p em {
   display: block;
   text-align: center;
   font-style: italic;
-  color: #c7c7c7;
+  color: var(--color-muted);
   margin-top: -0.5rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
@@ -67,7 +67,7 @@ p:has(img) + p em {
 }
 
 .toc-card ol li a {
-  color: #c7c7c7;
+  color: var(--color-muted);
   font-size: .925rem;
   padding: .25rem .5rem;
   box-decoration-break: clone;
@@ -75,7 +75,7 @@ p:has(img) + p em {
 }
 
 .toc-card ol li a:hover {
-  color: white;
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -92,7 +92,7 @@ p:has(img) + p em {
 }
 
 ol li a.active {
-  color: white;
+  color: var(--color-on-primary);
   background: var(--primary);
 }
 
@@ -164,19 +164,19 @@ ol li a.active {
     display: inline;
     background-color: transparent;
     padding: 0;
-    color: white;
+    color: var(--color-text);
   }
 
   .article-info {
     display: block;
     background-color: transparent;
     padding: 0;
-    color: white;
+    color: var(--color-text);
   }
 }
 
 code:not(.astro-code code) {
-  background-color: #353535;
+  background-color: var(--color-code-inline-bg);
   padding: .125rem .25rem;
   font-size: .925rem;
 }
@@ -192,7 +192,7 @@ code:not(.astro-code code) {
   margin-bottom: 1.5rem;
   width: 100%;
   height: 1px;
-  background-color: #353535;
+  background-color: var(--color-border);
   border: none;
 }
 
@@ -218,7 +218,7 @@ table {
 
 table th {
   padding: .5rem 1.5rem .5rem 0;
-  border-bottom: 1px solid #353535;
+  border-bottom: 1px solid var(--color-border);
 }
 
 table tbody {
@@ -226,7 +226,7 @@ table tbody {
 }
 
 table tbody tr {
-  border-bottom: 1px solid #353535;
+  border-bottom: 1px solid var(--color-border);
 }
 
 table tbody tr td {
