@@ -1,5 +1,32 @@
 [
   {
     "id": "guide"
+  },
+  {
+    "id": "Marketing"
+  },
+  {
+    "id": "Automation"
+  },
+  {
+    "id": "Operations"
+  },
+  {
+    "id": "Kubernetes"
+  },
+  {
+    "id": "AKS"
+  },
+  {
+    "id": "Azure"
+  },
+  {
+    "id": "Azure OpenAI"
+  },
+  {
+    "id": "LiveKit"
+  },
+  {
+    "id": "DevOps"
   }
 ]

@@ -82,6 +82,12 @@ const { Content, headings } = await render(post);
             <span>{post.data.createdAt.toLocaleDateString()}</span>
             <span>/</span>
             <span>{timeToRead(post)} minute{timeToRead(post) === 1 ? "" : "s"} to read</span>
+            {post.data.authors?.length && (
+              <>
+                <span>/</span>
+                <span>By {post.data.authors.map((author) => author.name).join(", ")}</span>
+              </>
+            )}
             <span>/</span>
             <span>Tags: {post.data.tags.map((tag) => tag.id).join(", ")}</span>
           </div>
